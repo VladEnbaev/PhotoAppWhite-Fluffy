@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C61E2A39014200DE474F /* AppDelegate.swift */; };
 		FF18C6212A39014200DE474F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6202A39014200DE474F /* SceneDelegate.swift */; };
-		FF18C6232A39014200DE474F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6222A39014200DE474F /* ViewController.swift */; };
-		FF18C6262A39014200DE474F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6242A39014200DE474F /* Main.storyboard */; };
+		FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6222A39014200DE474F /* PhotosViewController.swift */; };
 		FF18C6282A39014300DE474F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6272A39014300DE474F /* Assets.xcassets */; };
 		FF18C62B2A39014300DE474F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6292A39014300DE474F /* LaunchScreen.storyboard */; };
+		FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */; };
+		FFEDF31E2A390BC400CBC57C /* NetworManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31D2A390BC400CBC57C /* NetworManager.swift */; };
+		FFEDF3212A3917E400CBC57C /* PhotoUnsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3202A3917E400CBC57C /* PhotoUnsplash.swift */; };
+		FFEDF3232A391B7700CBC57C /* UserUnsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3222A391B7700CBC57C /* UserUnsplash.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF18C61B2A39014200DE474F /* White&FluffyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&FluffyTestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF18C61E2A39014200DE474F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF18C6202A39014200DE474F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FF18C6222A39014200DE474F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FF18C6252A39014200DE474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF18C6222A39014200DE474F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		FF18C6272A39014300DE474F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF18C62A2A39014300DE474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF18C62C2A39014300DE474F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		FFEDF31D2A390BC400CBC57C /* NetworManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworManager.swift; sourceTree = "<group>"; };
+		FFEDF3202A3917E400CBC57C /* PhotoUnsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUnsplash.swift; sourceTree = "<group>"; };
+		FFEDF3222A391B7700CBC57C /* UserUnsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUnsplash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,48 @@
 			children = (
 				FF18C61E2A39014200DE474F /* AppDelegate.swift */,
 				FF18C6202A39014200DE474F /* SceneDelegate.swift */,
-				FF18C6222A39014200DE474F /* ViewController.swift */,
-				FF18C6242A39014200DE474F /* Main.storyboard */,
+				FFEDF31F2A3917C200CBC57C /* NetworkLayer */,
+				FFEDF3182A39027400CBC57C /* PhotosModule */,
+				FFEDF31A2A3902E500CBC57C /* SupportingFiles */,
+			);
+			path = "White&FluffyTestTask";
+			sourceTree = "<group>";
+		};
+		FFEDF3182A39027400CBC57C /* PhotosModule */ = {
+			isa = PBXGroup;
+			children = (
+				FF18C6222A39014200DE474F /* PhotosViewController.swift */,
+				FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */,
+			);
+			path = PhotosModule;
+			sourceTree = "<group>";
+		};
+		FFEDF3192A3902AC00CBC57C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FFEDF3202A3917E400CBC57C /* PhotoUnsplash.swift */,
+				FFEDF3222A391B7700CBC57C /* UserUnsplash.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FFEDF31A2A3902E500CBC57C /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				FF18C6272A39014300DE474F /* Assets.xcassets */,
 				FF18C6292A39014300DE474F /* LaunchScreen.storyboard */,
 				FF18C62C2A39014300DE474F /* Info.plist */,
 			);
-			path = "White&FluffyTestTask";
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FFEDF31F2A3917C200CBC57C /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				FFEDF31D2A390BC400CBC57C /* NetworManager.swift */,
+				FFEDF3192A3902AC00CBC57C /* Model */,
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +168,6 @@
 			files = (
 				FF18C62B2A39014300DE474F /* LaunchScreen.storyboard in Resources */,
 				FF18C6282A39014300DE474F /* Assets.xcassets in Resources */,
-				FF18C6262A39014200DE474F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF18C6232A39014200DE474F /* ViewController.swift in Sources */,
+				FFEDF31E2A390BC400CBC57C /* NetworManager.swift in Sources */,
+				FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */,
+				FFEDF3232A391B7700CBC57C /* UserUnsplash.swift in Sources */,
+				FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */,
 				FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */,
+				FFEDF3212A3917E400CBC57C /* PhotoUnsplash.swift in Sources */,
 				FF18C6212A39014200DE474F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +191,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FF18C6242A39014200DE474F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FF18C6252A39014200DE474F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FF18C6292A39014300DE474F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,10 +325,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T574RGJCUB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "White&FluffyTestTask/Info.plist";
+				INFOPLIST_FILE = "White&FluffyTestTask/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,10 +353,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T574RGJCUB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "White&FluffyTestTask/Info.plist";
+				INFOPLIST_FILE = "White&FluffyTestTask/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
