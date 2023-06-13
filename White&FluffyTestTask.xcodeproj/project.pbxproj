@@ -13,9 +13,10 @@
 		FF18C6282A39014300DE474F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6272A39014300DE474F /* Assets.xcassets */; };
 		FF18C62B2A39014300DE474F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6292A39014300DE474F /* LaunchScreen.storyboard */; };
 		FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */; };
-		FFEDF31E2A390BC400CBC57C /* NetworManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31D2A390BC400CBC57C /* NetworManager.swift */; };
+		FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31D2A390BC400CBC57C /* NetworkService.swift */; };
 		FFEDF3212A3917E400CBC57C /* PhotoUnsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3202A3917E400CBC57C /* PhotoUnsplash.swift */; };
 		FFEDF3232A391B7700CBC57C /* UserUnsplash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3222A391B7700CBC57C /* UserUnsplash.swift */; };
+		FFEDF3262A391FA000CBC57C /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3252A391FA000CBC57C /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +28,10 @@
 		FF18C62A2A39014300DE474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF18C62C2A39014300DE474F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
-		FFEDF31D2A390BC400CBC57C /* NetworManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworManager.swift; sourceTree = "<group>"; };
+		FFEDF31D2A390BC400CBC57C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FFEDF3202A3917E400CBC57C /* PhotoUnsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUnsplash.swift; sourceTree = "<group>"; };
 		FFEDF3222A391B7700CBC57C /* UserUnsplash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUnsplash.swift; sourceTree = "<group>"; };
+		FFEDF3252A391FA000CBC57C /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				FF18C6202A39014200DE474F /* SceneDelegate.swift */,
 				FFEDF31F2A3917C200CBC57C /* NetworkLayer */,
 				FFEDF3182A39027400CBC57C /* PhotosModule */,
+				FFEDF3242A391F4700CBC57C /* Helpers */,
 				FFEDF31A2A3902E500CBC57C /* SupportingFiles */,
 			);
 			path = "White&FluffyTestTask";
@@ -102,10 +105,18 @@
 		FFEDF31F2A3917C200CBC57C /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				FFEDF31D2A390BC400CBC57C /* NetworManager.swift */,
+				FFEDF31D2A390BC400CBC57C /* NetworkService.swift */,
 				FFEDF3192A3902AC00CBC57C /* Model */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		FFEDF3242A391F4700CBC57C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FFEDF3252A391FA000CBC57C /* Resources.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,11 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFEDF31E2A390BC400CBC57C /* NetworManager.swift in Sources */,
+				FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */,
 				FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */,
 				FFEDF3232A391B7700CBC57C /* UserUnsplash.swift in Sources */,
 				FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */,
 				FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */,
+				FFEDF3262A391FA000CBC57C /* Resources.swift in Sources */,
 				FFEDF3212A3917E400CBC57C /* PhotoUnsplash.swift in Sources */,
 				FF18C6212A39014200DE474F /* SceneDelegate.swift in Sources */,
 			);
