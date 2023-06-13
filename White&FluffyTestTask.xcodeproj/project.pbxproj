@@ -78,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				FF18C6222A39014200DE474F /* PhotosViewController.swift */,
-				FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */,
 			);
 			path = PhotosModule;
 			sourceTree = "<group>";
@@ -114,6 +113,7 @@
 		FFEDF3242A391F4700CBC57C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */,
 				FFEDF3252A391FA000CBC57C /* Resources.swift */,
 			);
 			path = Helpers;

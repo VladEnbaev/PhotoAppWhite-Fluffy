@@ -9,17 +9,24 @@ import UIKit
 
 class PhotosViewController: UIViewController{
     
+    let photosCollectionView = UICollectionView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         constraintViews()
     }
+    
 }
 
 extension PhotosViewController: BaseViewProtocol {
     func setupViews() {
-        <#code#>
+        setupPhotosCollectionView()
+    }
+    
+    func setupPhotosCollectionView() {
+        
     }
     
     func constraintViews() {
