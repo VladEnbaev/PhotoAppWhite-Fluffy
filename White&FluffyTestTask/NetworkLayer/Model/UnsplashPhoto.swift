@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct PhotoUnsplash: Codable {
+struct UnsplashPhoto: Codable {
     let id: String
-    let createdAt : Date
+    let createdAt : String?
     let width, height: Int
     let downloads: Int
-    let description: String
+    let description: String?
     
-    let user : UserUnsplash
+    let user : UnsplashUser
 }
 
 struct Location: Codable {

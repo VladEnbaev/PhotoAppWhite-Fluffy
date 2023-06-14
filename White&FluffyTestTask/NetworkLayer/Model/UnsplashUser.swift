@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct UserUnsplash: Codable {
+struct UnsplashUser: Codable {
     let id: String
     let username, name: String
 }

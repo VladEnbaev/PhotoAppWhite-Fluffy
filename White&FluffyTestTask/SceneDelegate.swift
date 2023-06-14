@@ -18,9 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
        
+        let networkService = NetworkService()
         let photosViewController = PhotosViewController()
+        photosViewController.networkService = networkService
         
-        window?.rootViewController = photosViewController
+        let navController = UINavigationController(rootViewController: photosViewController)
+        window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
 }

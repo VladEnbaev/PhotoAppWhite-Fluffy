@@ -16,23 +16,27 @@ fileprivate enum HTTPMethod {
 
     
 fileprivate enum UnsplashResources {
-    enum URL {
+    
+    enum URLSettings {
         static let scheme = "https"
         static let host = "api.unsplash.com"
         static let randomPhotosPath = "/photos/random"
         static let searchPhotosPath = "/search/photos"
     }
-    enum Parameters{
+    
+    enum Parameters {
         static let count = "count"
         static let query = "query"
         static let page = "page"
         static let perPage = "per_page"
     }
+    
     static let authID = "BN1-jX1MuvL8gagcdvR7vEaGTbJx9TSRbUsUzV4ltRU"
 }
 
 protocol NetworkServiceProtocol {
-    func getImages()
+    func getRandomImages(count: Int, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)
+    func getImages(query: String, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)
 }
 
 class NetworkService {
@@ -56,13 +60,14 @@ class NetworkService {
     }
 }
 
-extension NetworkService {
-    func getRandomImages(count: Int, completion: @escaping (Result<[PhotoUnsplash], Error>) -> Void)  {
+extension NetworkService: NetworkServiceProtocol {
+    
+    func getRandomImages(count: Int, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)  {
         let parameters = [
             UnsplashResources.Parameters.count : "\(count)"
         ]
         
-        let url = createQueryURL(path: UnsplashResources.URL.randomPhotosPath, params: parameters)
+        let url = createQueryURL(path: UnsplashResources.URLSettings.randomPhotosPath, params: parameters)
         
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = createHeader()
@@ -72,14 +77,14 @@ extension NetworkService {
        
     }
     
-    func getImages(query: String, completion: @escaping (Result<[PhotoUnsplash], Error>) -> Void)  {
+    func getImages(query: String, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)  {
         let parameters = [
             UnsplashResources.Parameters.query : query,
             UnsplashResources.Parameters.page : "\(1)",
             UnsplashResources.Parameters.perPage : "\(30)"
         ]
         
-        let url = createQueryURL(path: UnsplashResources.URL.searchPhotosPath,params: parameters)
+        let url = createQueryURL(path: UnsplashResources.URLSettings.searchPhotosPath, params: parameters)
         
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = createHeader()
@@ -91,8 +96,8 @@ extension NetworkService {
     
     private func createQueryURL(path: String, params: [String: String]) -> URL {
         var components = URLComponents()
-        components.scheme = UnsplashResources.URL.scheme
-        components.host = UnsplashResources.URL.host
+        components.scheme = UnsplashResources.URLSettings.scheme
+        components.host = UnsplashResources.URLSettings.host
         components.path = path
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
         return components.url!
