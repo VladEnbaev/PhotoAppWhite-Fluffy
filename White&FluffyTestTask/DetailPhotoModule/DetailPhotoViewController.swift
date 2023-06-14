@@ -14,16 +14,15 @@ class DetailPhotoViewController: UIViewController {
     
     private var photo : UnsplashPhoto? = nil
     
-    let indicator = UIActivityIndicatorView(style: .large)
-    
     private let likeButton = UIButton()
     private let photoImageView = UIImageView()
     
     private var usernameButton = UIButton()
     private var geoButton = UIButton()
     private var downloadsButton = UIButton()
-    
     private let dateLabel = UILabel()
+    
+    let indicator = UIActivityIndicatorView(style: .large)
     
     private let imageViewSizeMultiplier : CGFloat = 0.4
     
@@ -42,7 +41,7 @@ class DetailPhotoViewController: UIViewController {
     }
 }
 
-//actions
+//MARK: - Actions
 extension DetailPhotoViewController {
     
     @objc func likeButtonTapped() {
@@ -74,6 +73,7 @@ extension DetailPhotoViewController {
     
 }
 
+//MARK: - Setup Views
 extension DetailPhotoViewController: BaseViewProtocol {
     func setupViews() {
         navigationItem.largeTitleDisplayMode = .never

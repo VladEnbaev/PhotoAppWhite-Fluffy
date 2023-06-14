@@ -28,10 +28,9 @@ class LikedPhotosCell: UITableViewCell {
         usernameLabel.text = text
         setupViews()
     }
-    
-    
 }
 
+//MARK: - Setup Views
 extension LikedPhotosCell : BaseViewProtocol {
     func setupViews() {
         
@@ -42,7 +41,7 @@ extension LikedPhotosCell : BaseViewProtocol {
         constraintViews()
     }
     
-    func setupPhotoImageView() {
+    private func setupPhotoImageView() {
         photoImageView.layer.cornerRadius = 2
         photoImageView.clipsToBounds = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,12 +49,12 @@ extension LikedPhotosCell : BaseViewProtocol {
         photoImageView.contentMode = .scaleAspectFill
     }
     
-    func setupIndicator() {
+    private func setupIndicator() {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
     }
     
-    func setupUsernameLabel() {
+    private func setupUsernameLabel() {
         usernameLabel.font = UIFont.systemFont(ofSize: 20,
                                                weight: .bold)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false

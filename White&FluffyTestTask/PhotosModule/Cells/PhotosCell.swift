@@ -38,6 +38,7 @@ class PhotosCell: UICollectionViewCell {
     
 }
 
+//MARK: - Setup Views
 extension PhotosCell: BaseViewProtocol {
     
     func setupViews() {
@@ -46,7 +47,7 @@ extension PhotosCell: BaseViewProtocol {
         setupIndicator()
     }
     
-    func setupPhotoImageView() {
+    private func setupPhotoImageView() {
         photoImageView.layer.cornerRadius = 10
         photoImageView.clipsToBounds = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,7 @@ extension PhotosCell: BaseViewProtocol {
         photoImageView.contentMode = .scaleAspectFill
     }
     
-    func setupIndicator() {
+    private func setupIndicator() {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
     }

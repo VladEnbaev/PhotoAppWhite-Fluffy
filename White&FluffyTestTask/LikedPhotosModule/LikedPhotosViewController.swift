@@ -28,15 +28,29 @@ class LikedPhotosViewController: UIViewController {
         
         loadPhotos()
     }
+}
+//MARK: - Actions
+extension LikedPhotosViewController {
     
-    func loadPhotos() {
+    private func loadPhotos() {
         guard let dataManager = dataManager else { return }
         self.photos = dataManager.fetchPhotos().map { $0.createModel() }
         
         tableView.reloadData()
     }
+    
+    @objc func refreshButtonTapped() {
+        loadPhotos()
+    }
+    
+    @objc func deleteButtonTapped() {
+        dataManager?.deleteAllPhotos()
+        loadPhotos()
+    }
+    
 }
 
+//MARK: - Setup Views
 extension LikedPhotosViewController: BaseViewProtocol {
     func setupViews() {
         view.backgroundColor = .white
@@ -68,15 +82,6 @@ extension LikedPhotosViewController: BaseViewProtocol {
         navigationItem.rightBarButtonItems = [deleteAllButton, refreshButton]
     }
     
-    @objc func refreshButtonTapped() {
-        loadPhotos()
-    }
-    
-    @objc func deleteButtonTapped() {
-        dataManager?.deleteAllPhotos()
-        loadPhotos()
-    }
-    
     func constraintViews() {
         view.addSubview(tableView)
         
@@ -88,7 +93,7 @@ extension LikedPhotosViewController: BaseViewProtocol {
         ])
     }
 }
-
+//MARK: - UITableViewDataSource
 extension LikedPhotosViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photos?.count ?? 0
@@ -110,6 +115,7 @@ extension LikedPhotosViewController : UITableViewDataSource{
     }
 }
 
+//MARK: - UITableViewDelegate
 extension LikedPhotosViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let photo = photos?[indexPath.row],

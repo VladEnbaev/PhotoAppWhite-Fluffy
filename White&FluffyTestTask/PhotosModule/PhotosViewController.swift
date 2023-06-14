@@ -32,87 +32,7 @@ class PhotosViewController: UIViewController{
     }
     
 }
-
-extension PhotosViewController: BaseViewProtocol {
-    func setupViews() {
-        view.backgroundColor = .white
-        
-        setupPhotosCollectionView()
-        setupSearchBar()
-        setupPhotosCollectionView()
-        setupNavigationBar()
-        setupStatusLabel()
-    }
-    
-    func setupPhotosCollectionView() {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.showsVerticalScrollIndicator = false
-        
-        collectionView.register(PhotosCell.self, forCellWithReuseIdentifier: PhotosCell.reuseId)
-        
-        collectionView.contentInsetAdjustmentBehavior = .automatic
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Photos"
-        
-        let refreshButton = UIBarButtonItem(
-            barButtonSystemItem: .refresh,
-            target: self,
-            action: #selector(refreshButtonTapped)
-        )
-        
-        navigationItem.rightBarButtonItem = refreshButton
-    }
-    
-    @objc func refreshButtonTapped() {
-        getRandomImages(count: 30)
-    }
-    
-    private func setupSearchBar() {
-        let seacrhController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = seacrhController
-        seacrhController.hidesNavigationBarDuringPresentation = false
-        seacrhController.obscuresBackgroundDuringPresentation = false
-        seacrhController.searchBar.delegate = self
-    }
-    
-    func setupStatusLabel() {
-        statusLabel.text = "Wait a second..."
-        statusLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
-        statusLabel.textAlignment = .center
-        statusLabel.textColor = .black
-        
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func constraintViews() {
-        view.addSubview(collectionView)
-        view.addSubview(statusLabel)
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            
-            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            statusLabel.heightAnchor.constraint(equalToConstant: 200),
-            statusLabel.widthAnchor.constraint(equalToConstant: 400)
-        ])
-    
-    }
-    
-}
+//MARK: - Actions
 extension PhotosViewController {
     private func getImages(for query: String) {
         statusLabel(isHidden: false)
@@ -148,7 +68,7 @@ extension PhotosViewController {
         }
     }
     
-    func showAlert(error: Error) {
+    private func showAlert(error: Error) {
         let alert = UIAlertController(title: "ops",
                                       message: error.localizedDescription,
                                       preferredStyle: .alert)
@@ -157,12 +77,95 @@ extension PhotosViewController {
         self.present(alert, animated: true)
     }
     
-    func statusLabel(isHidden: Bool){
+    private func statusLabel(isHidden: Bool){
         statusLabel.isHidden = isHidden
         collectionView.isHidden = !isHidden
     }
+    
+    @objc func refreshButtonTapped() {
+        getRandomImages(count: 30)
+    }
 }
 
+//MARK: - Setup Views
+extension PhotosViewController: BaseViewProtocol {
+    func setupViews() {
+        view.backgroundColor = .white
+        
+        setupPhotosCollectionView()
+        setupSearchBar()
+        setupPhotosCollectionView()
+        setupNavigationBar()
+        setupStatusLabel()
+    }
+    
+    private func setupPhotosCollectionView() {
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        collectionViewLayout.scrollDirection = .vertical
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        
+        collectionView.register(PhotosCell.self, forCellWithReuseIdentifier: PhotosCell.reuseId)
+        
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Photos"
+        
+        let refreshButton = UIBarButtonItem(
+            barButtonSystemItem: .refresh,
+            target: self,
+            action: #selector(refreshButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItem = refreshButton
+    }
+    
+    private func setupSearchBar() {
+        let seacrhController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = seacrhController
+        seacrhController.hidesNavigationBarDuringPresentation = false
+        seacrhController.obscuresBackgroundDuringPresentation = false
+        seacrhController.searchBar.delegate = self
+    }
+    
+    private func setupStatusLabel() {
+        statusLabel.text = "Wait a second..."
+        statusLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        statusLabel.textAlignment = .center
+        statusLabel.textColor = .black
+        
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func constraintViews() {
+        view.addSubview(collectionView)
+        view.addSubview(statusLabel)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            statusLabel.heightAnchor.constraint(equalToConstant: 200),
+            statusLabel.widthAnchor.constraint(equalToConstant: 400)
+        ])
+    
+    }
+    
+}
+
+//MARK: - UISearchBarDelegate
 extension PhotosViewController : UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -172,6 +175,7 @@ extension PhotosViewController : UISearchBarDelegate {
     
 }
 
+//MARK: - UICollectionViewDataSource
 extension PhotosViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos?.count ?? 0
@@ -188,6 +192,7 @@ extension PhotosViewController : UICollectionViewDataSource {
     }
 }
 
+//MARK: - UICollectionViewDelegate
 extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let photo = photos?[indexPath.row],
@@ -219,6 +224,7 @@ extension PhotosViewController : UICollectionViewDelegate {
     }
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
