@@ -56,14 +56,6 @@ extension PhotosViewController: BaseViewProtocol {
     }
     
     private func setupNavigationBar() {
-//        let titleLabel = UILabel()
-//        titleLabel.text = "PHOTOS"
-//        titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-//        titleLabel.textColor = #colorLiteral(red: 0.5019607843, green: 0.4980392157, blue: 0.4980392157, alpha: 1)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
-//
-//        navigationItem.rightBarButtonItems = [actionBarButtonItem, addBarButtonItem]
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Photos"
     }
@@ -157,7 +149,8 @@ extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let photo = photos?[indexPath.row] else { return }
         let detailVC = DetailPhotoViewController()
-        detailVC.configure(with: photo)
+        let dataManager = CoreDataManager()
+        detailVC.configure(with: photo, dataManager: dataManager)
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -184,7 +177,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return sectionInserts.left
-//    }
 }

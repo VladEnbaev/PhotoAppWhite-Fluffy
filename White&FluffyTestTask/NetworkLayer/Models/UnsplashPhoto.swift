@@ -14,15 +14,24 @@ struct SearchResults: Decodable {
 
 struct UnsplashPhoto: Codable {
     let id: String
-    let createdAt : String?
+    let createdAt: String?
     let width, height: Int
-    let downloads: Int?
+    let color: String
+    let downloads: Int
+    let likedByUser: Bool
     let description: String?
     
-    let location : Location?
-    let urls : Urls
-    let user : UnsplashUser
-    
+    let location: Location?
+    let urls: Urls
+    let user: UnsplashUser
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case createdAt = "created_at"
+        case width, height, color, downloads
+        case likedByUser = "liked_by_user"
+        case description, location, urls, user
+    }
     
     struct Urls : Codable {
         let raw, full, regular, small: String

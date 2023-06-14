@@ -9,7 +9,9 @@ import UIKit
 import SDWebImage
 
 class DetailPhotoViewController: UIViewController {
-
+    
+    var dataManager: DataManagerProtocol? = nil
+    
     private var photo : UnsplashPhoto? = nil
     
     let indicator = UIActivityIndicatorView(style: .large)
@@ -29,14 +31,37 @@ class DetailPhotoViewController: UIViewController {
         constraintViews()
     }
     
-    func configure(with photo: UnsplashPhoto) {
+    func configure(with photo: UnsplashPhoto, dataManager: DataManagerProtocol) {
         loadViewIfNeeded()
+        self.dataManager = dataManager
         self.photo = photo
         
         setupViews()
         print(photo)
     }
 }
+//actions
+extension DetailPhotoViewController {
+    
+    @objc func likeButtonTapped() {
+        guard let photo = photo else {
+            showAlert(error: "Please, wait a second")
+            return
+        }
+        dataManager?.createPhoto(from: photo)
+    }
+    
+    func showAlert(error: String) {
+        let alert = UIAlertController(title: "ops",
+                                      message: error,
+                                      preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "ok", style: .default)
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
+    }
+    
+}
+
 extension DetailPhotoViewController: BaseViewProtocol {
     func setupViews() {
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -63,7 +88,13 @@ extension DetailPhotoViewController: BaseViewProtocol {
                             for: .selected)
         likeButton.tintColor = .systemRed
         
+        likeButton.contentVerticalAlignment = .fill
+        likeButton.contentHorizontalAlignment = .fill
+//        likeButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
         likeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .allEvents)
     }
     
     private func setupPhotoImageView() {
@@ -72,7 +103,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
         photoImageView.backgroundColor = .lightGray
         photoImageView.contentMode = .scaleAspectFill
         
-        guard let url = URL(string: photo?.urls.full ?? "") else { return }
+        guard let url = URL(string: photo?.urls.regular ?? "") else { return }
         indicator.startAnimating()
         self.photoImageView.sd_setImage(with: url) {_,_,_,_ in
             DispatchQueue.main.async{
@@ -159,7 +190,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
             likeButton.centerYAnchor.constraint(equalTo: infoStackView.centerYAnchor),
             likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             likeButton.heightAnchor.constraint(equalToConstant: 50),
-            likeButton.widthAnchor.constraint(equalToConstant: 50),
+            likeButton.widthAnchor.constraint(equalToConstant: 55),
             
             
         ])
