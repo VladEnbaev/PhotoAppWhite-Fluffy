@@ -12,15 +12,3 @@ protocol BaseViewProtocol {
     func setupViews()
     func constraintViews()
 }
-
-//class BaseViewController : UIViewController, BaseViewProtocol {
-//    
-//    override func viewDidLoad() {
-//        setupViews()
-//        constraintViews()
-//    }
-//    
-//    func setupViews() { }
-//    
-//    func constraintViews() { }
-//}

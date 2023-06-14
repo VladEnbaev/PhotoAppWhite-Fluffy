@@ -37,15 +37,6 @@ class PhotosCell: UICollectionViewCell {
         constraintViews()
     }
     
-    func startAnimation(_ bool: Bool) {
-        
-        if bool {
-            indicator.startAnimating()
-        } else {
-            indicator.stopAnimating()
-        }
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
@@ -60,14 +51,14 @@ class PhotosCell: UICollectionViewCell {
 extension PhotosCell: BaseViewProtocol {
     
     func setupViews() {
-        contentView.layer.cornerRadius = 20
         contentView.layer.cornerCurve = .circular
         setupPhotoImageView()
         setupIndicator()
     }
     
     func setupPhotoImageView() {
-        
+        photoImageView.layer.cornerRadius = 10
+        photoImageView.clipsToBounds = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.backgroundColor = .white
         photoImageView.contentMode = .scaleToFill
@@ -76,8 +67,6 @@ extension PhotosCell: BaseViewProtocol {
     func setupIndicator() {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
-       
-        
     }
     
     func constraintViews() {

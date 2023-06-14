@@ -110,8 +110,6 @@ extension PhotosViewController {
                 switch result {
                 case .success(let photos):
                     self.photos = photos
-                    print(photos[1])
-                    print(photos.count)
                     self.collectionView.reloadData()
                 case .failure(let error):
                     self.showAlert(error: error)
@@ -157,13 +155,18 @@ extension PhotosViewController : UICollectionViewDataSource {
 
 extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! PhotosCell
+        guard let photo = photos?[indexPath.row] else { return }
+        let detailVC = DetailPhotoViewController()
+        detailVC.configure(with: photo)
         
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! PhotosCell
-        guard let image = cell.photoImageView.image else { return }
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotosCell else { return }
+        UIView.animate(withDuration: 0.2) {
+            cell.contentView.alpha = 0.4
+        }
     }
 }
 

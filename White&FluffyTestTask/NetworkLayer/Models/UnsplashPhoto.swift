@@ -19,20 +19,23 @@ struct UnsplashPhoto: Codable {
     let downloads: Int?
     let description: String?
     
+    let location : Location?
     let urls : Urls
     let user : UnsplashUser
-}
+    
+    
+    struct Urls : Codable {
+        let raw, full, regular, small: String
+        let thumb: String
+    }
 
-struct Urls : Codable{
-    let raw, full, regular, small: String
-    let thumb: String
-}
+    struct Location: Codable {
+        let name: String?
+        let position: Position
+    }
 
-struct Location: Codable {
-    let name, city, country: String
-    let position: Position
-}
+    struct Position : Codable {
+        let latitude, longitude: Double?
+    }
 
-struct Position : Codable {
-    let latitude, longitude: Double
 }

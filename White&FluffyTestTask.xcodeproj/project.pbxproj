@@ -20,6 +20,7 @@
 		FFEDF3262A391FA000CBC57C /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3252A391FA000CBC57C /* Resources.swift */; };
 		FFEDF32B2A392BBB00CBC57C /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF32A2A392BBB00CBC57C /* PhotosCell.swift */; };
 		FFEDF32D2A39B11300CBC57C /* AppBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF32C2A39B11300CBC57C /* AppBuilder.swift */; };
+		FFEDF3302A39CB9600CBC57C /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF32F2A39CB9600CBC57C /* DetailPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		FFEDF3252A391FA000CBC57C /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		FFEDF32A2A392BBB00CBC57C /* PhotosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
 		FFEDF32C2A39B11300CBC57C /* AppBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBuilder.swift; sourceTree = "<group>"; };
+		FFEDF32F2A39CB9600CBC57C /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,6 @@
 				636327CFD9F7B0974E922031 /* Pods-White&FluffyTestTask.debug.xcconfig */,
 				10929B8EA2B289F19263011D /* Pods-White&FluffyTestTask.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -98,6 +99,7 @@
 				FFEDF32C2A39B11300CBC57C /* AppBuilder.swift */,
 				FFEDF31F2A3917C200CBC57C /* NetworkLayer */,
 				FFEDF3182A39027400CBC57C /* PhotosModule */,
+				FFEDF32E2A39CB6800CBC57C /* DetailPhotoModule */,
 				FFEDF3242A391F4700CBC57C /* Helpers */,
 				FFEDF31A2A3902E500CBC57C /* SupportingFiles */,
 			);
@@ -107,19 +109,19 @@
 		FFEDF3182A39027400CBC57C /* PhotosModule */ = {
 			isa = PBXGroup;
 			children = (
-				FF18C6222A39014200DE474F /* PhotosViewController.swift */,
 				FFEDF3292A392B9D00CBC57C /* Cells */,
+				FF18C6222A39014200DE474F /* PhotosViewController.swift */,
 			);
 			path = PhotosModule;
 			sourceTree = "<group>";
 		};
-		FFEDF3192A3902AC00CBC57C /* Model */ = {
+		FFEDF3192A3902AC00CBC57C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				FFEDF3202A3917E400CBC57C /* UnsplashPhoto.swift */,
 				FFEDF3222A391B7700CBC57C /* UnsplashUser.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FFEDF31A2A3902E500CBC57C /* SupportingFiles */ = {
@@ -136,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				FFEDF31D2A390BC400CBC57C /* NetworkService.swift */,
-				FFEDF3192A3902AC00CBC57C /* Model */,
+				FFEDF3192A3902AC00CBC57C /* Models */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -156,6 +158,14 @@
 				FFEDF32A2A392BBB00CBC57C /* PhotosCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		FFEDF32E2A39CB6800CBC57C /* DetailPhotoModule */ = {
+			isa = PBXGroup;
+			children = (
+				FFEDF32F2A39CB9600CBC57C /* DetailPhotoViewController.swift */,
+			);
+			path = DetailPhotoModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +286,7 @@
 				FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */,
 				FFEDF3232A391B7700CBC57C /* UnsplashUser.swift in Sources */,
 				FFEDF32D2A39B11300CBC57C /* AppBuilder.swift in Sources */,
+				FFEDF3302A39CB9600CBC57C /* DetailPhotoViewController.swift in Sources */,
 				FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */,
 				FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */,
 				FFEDF3262A391FA000CBC57C /* Resources.swift in Sources */,
