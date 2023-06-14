@@ -14,6 +14,7 @@ class PhotosViewController: UIViewController{
     var dataManager : DataManagerProtocol? = nil
     
     var collectionView : UICollectionView!
+    var statusLabel = UILabel()
     
     var photos: [UnsplashPhoto]? = nil
     
@@ -34,10 +35,13 @@ class PhotosViewController: UIViewController{
 
 extension PhotosViewController: BaseViewProtocol {
     func setupViews() {
+        view.backgroundColor = .white
+        
         setupPhotosCollectionView()
         setupSearchBar()
         setupPhotosCollectionView()
         setupNavigationBar()
+        setupStatusLabel()
     }
     
     func setupPhotosCollectionView() {
@@ -81,14 +85,29 @@ extension PhotosViewController: BaseViewProtocol {
         seacrhController.searchBar.delegate = self
     }
     
+    func setupStatusLabel() {
+        statusLabel.text = "Wait a second..."
+        statusLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        statusLabel.textAlignment = .center
+        statusLabel.textColor = .black
+        
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     func constraintViews() {
         view.addSubview(collectionView)
+        view.addSubview(statusLabel)
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            statusLabel.heightAnchor.constraint(equalToConstant: 200),
+            statusLabel.widthAnchor.constraint(equalToConstant: 400)
         ])
     
     }
@@ -96,13 +115,16 @@ extension PhotosViewController: BaseViewProtocol {
 }
 extension PhotosViewController {
     private func getImages(for query: String) {
+        statusLabel(isHidden: false)
         networkService?.getImages(query: query) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photosResult):
+                    self.statusLabel(isHidden: true)
                     self.photos = photosResult.results
                     self.collectionView.reloadData()
                 case .failure(let error):
+                    self.statusLabel(isHidden: true)
                     self.showAlert(error: error)
                 }
             }
@@ -110,13 +132,16 @@ extension PhotosViewController {
     }
     
     private func getRandomImages(count: Int) {
+        statusLabel(isHidden: false)
         networkService?.getRandomImages(count: count) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photos):
+                    self.statusLabel(isHidden: true)
                     self.photos = photos
                     self.collectionView.reloadData()
                 case .failure(let error):
+                    self.statusLabel(isHidden: true)
                     self.showAlert(error: error)
                 }
             }
@@ -130,6 +155,11 @@ extension PhotosViewController {
         let okButton = UIAlertAction(title: "ok", style: .default)
         alert.addAction(okButton)
         self.present(alert, animated: true)
+    }
+    
+    func statusLabel(isHidden: Bool){
+        statusLabel.isHidden = isHidden
+        collectionView.isHidden = !isHidden
     }
 }
 

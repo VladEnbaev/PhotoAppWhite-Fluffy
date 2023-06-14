@@ -25,6 +25,8 @@ class DetailPhotoViewController: UIViewController {
     
     private let dateLabel = UILabel()
     
+    private let imageViewSizeMultiplier : CGFloat = 0.4
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,9 +39,9 @@ class DetailPhotoViewController: UIViewController {
         self.photo = photo
         
         setupViews()
-        print(photo)
     }
 }
+
 //actions
 extension DetailPhotoViewController {
     
@@ -74,7 +76,7 @@ extension DetailPhotoViewController {
 
 extension DetailPhotoViewController: BaseViewProtocol {
     func setupViews() {
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .white
         
         setupPhotoImageView()
@@ -178,10 +180,10 @@ extension DetailPhotoViewController: BaseViewProtocol {
         view.addSubview(likeButton)
         
         NSLayoutConstraint.activate([
-            photoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            photoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             photoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            photoImageView.heightAnchor.constraint(equalToConstant: 300),
-            photoImageView.widthAnchor.constraint(equalToConstant: 300),
+            photoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: imageViewSizeMultiplier),
+            photoImageView.widthAnchor.constraint(equalTo: photoImageView.heightAnchor),
             
         
             indicator.centerXAnchor.constraint(equalTo: photoImageView.centerXAnchor),
@@ -190,7 +192,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
             indicator.widthAnchor.constraint(equalToConstant: 20),
             
             dateLabel.centerXAnchor.constraint(equalTo: photoImageView.centerXAnchor),
-            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 350),
+            dateLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 20),
             
             downloadsButton.widthAnchor.constraint(equalToConstant: 190),
             geoButton.widthAnchor.constraint(equalToConstant: 190),
@@ -198,7 +200,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
             
             
             infoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            infoStackView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 70),
+            infoStackView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 60),
             
             likeButton.centerYAnchor.constraint(equalTo: infoStackView.centerYAnchor),
             likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
@@ -209,3 +211,4 @@ extension DetailPhotoViewController: BaseViewProtocol {
         ])
     }
 }
+
