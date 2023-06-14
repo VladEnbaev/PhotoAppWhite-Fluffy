@@ -11,6 +11,7 @@ import SDWebImage
 class PhotosViewController: UIViewController{
     
     var networkService : NetworkServiceProtocol? = nil
+    var dataManager : DataManagerProtocol? = nil
     
     var collectionView : UICollectionView!
     
@@ -58,6 +59,18 @@ extension PhotosViewController: BaseViewProtocol {
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Photos"
+        
+        let refreshButton = UIBarButtonItem(
+            barButtonSystemItem: .refresh,
+            target: self,
+            action: #selector(refreshButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItem = refreshButton
+    }
+    
+    @objc func refreshButtonTapped() {
+        getRandomImages(count: 30)
     }
     
     private func setupSearchBar() {
@@ -147,10 +160,16 @@ extension PhotosViewController : UICollectionViewDataSource {
 
 extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let photo = photos?[indexPath.row] else { return }
+        guard let photo = photos?[indexPath.row],
+              let dataManager = dataManager else { return }
+        
         let detailVC = DetailPhotoViewController()
-        let dataManager = CoreDataManager()
-        detailVC.configure(with: photo, dataManager: dataManager)
+        
+        if let entity = dataManager.fetchPhoto(with: photo.id) {
+            detailVC.configure(with: entity.createModel(), dataManager: dataManager)
+        } else {
+            detailVC.configure(with: photo, dataManager: dataManager)
+        }
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -159,6 +178,13 @@ extension PhotosViewController : UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? PhotosCell else { return }
         UIView.animate(withDuration: 0.2) {
             cell.contentView.alpha = 0.4
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotosCell else { return }
+        UIView.animate(withDuration: 0.2) {
+            cell.contentView.alpha = 1
         }
     }
 }

@@ -31,7 +31,6 @@ class LikedPhotosViewController: UIViewController {
     
     func loadPhotos() {
         guard let dataManager = dataManager else { return }
-        
         self.photos = dataManager.fetchPhotos().map { $0.createModel() }
         
         tableView.reloadData()
@@ -52,7 +51,7 @@ extension LikedPhotosViewController: BaseViewProtocol {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(LikedPhotosTableViewCell.self, forCellReuseIdentifier: LikedPhotosTableViewCell.identifier)
+        tableView.register(LikedPhotosCell.self, forCellReuseIdentifier: LikedPhotosCell.identifier)
     }
     
     private func setupNavigationBar() {
@@ -96,7 +95,7 @@ extension LikedPhotosViewController : UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LikedPhotosTableViewCell.identifier) as? LikedPhotosTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LikedPhotosCell.identifier) as? LikedPhotosCell
                     else { return UITableViewCell() }
         guard let photo = photos?[indexPath.row],
               let url = URL(string: photo.urls.regular) else { return UITableViewCell() }

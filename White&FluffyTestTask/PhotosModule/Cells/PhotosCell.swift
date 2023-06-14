@@ -18,13 +18,8 @@ class PhotosCell: UICollectionViewCell {
     
     var photoImageView = UIImageView()
     
-    override var isSelected: Bool {
-        didSet {
-            updateSelectedState()
-        }
-    }
-    
     func setup(with imageURL: URL) {
+        
         indicator.startAnimating()
         self.photoImageView.sd_setImage(with: imageURL) {_,_,_,_ in
             DispatchQueue.main.async{
@@ -32,7 +27,6 @@ class PhotosCell: UICollectionViewCell {
             }
         }
         
-        updateSelectedState()
         setupViews()
         constraintViews()
     }
@@ -40,10 +34,6 @@ class PhotosCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
-    }
-    
-    private func updateSelectedState() {
-        photoImageView.alpha = isSelected ? 0.7 : 1
     }
     
 }
@@ -61,7 +51,7 @@ extension PhotosCell: BaseViewProtocol {
         photoImageView.clipsToBounds = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.backgroundColor = .white
-        photoImageView.contentMode = .scaleToFill
+        photoImageView.contentMode = .scaleAspectFill
     }
     
     func setupIndicator() {

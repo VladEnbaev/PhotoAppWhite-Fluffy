@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 
-class LikedPhotosTableViewCell: UITableViewCell {
+class LikedPhotosCell: UITableViewCell {
    
     static let identifier = "LikedPhotosCellID"
     
@@ -26,16 +26,13 @@ class LikedPhotosTableViewCell: UITableViewCell {
         }
         
         usernameLabel.text = text
-        
-        print("LIKED VC!!!!! \(url.absoluteString) \n \(text)")
-        
         setupViews()
     }
     
     
 }
 
-extension LikedPhotosTableViewCell : BaseViewProtocol {
+extension LikedPhotosCell : BaseViewProtocol {
     func setupViews() {
         
         setupPhotoImageView()
@@ -50,7 +47,7 @@ extension LikedPhotosTableViewCell : BaseViewProtocol {
         photoImageView.clipsToBounds = true
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.backgroundColor = .white
-        photoImageView.contentMode = .scaleToFill
+        photoImageView.contentMode = .scaleAspectFill
     }
     
     func setupIndicator() {
@@ -61,7 +58,6 @@ extension LikedPhotosTableViewCell : BaseViewProtocol {
     func setupUsernameLabel() {
         usernameLabel.font = UIFont.systemFont(ofSize: 20,
                                                weight: .bold)
-        
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -86,6 +82,4 @@ extension LikedPhotosTableViewCell : BaseViewProtocol {
             usernameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
-    
-    
 }

@@ -26,7 +26,7 @@
 		FFEDF3392A3A1C2B00CBC57C /* UnsplashPhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3382A3A1C2B00CBC57C /* UnsplashPhotoEntity.swift */; };
 		FFEDF33C2A3A350500CBC57C /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF33B2A3A350500CBC57C /* UIColor + ext.swift */; };
 		FFEDF33F2A3A36F200CBC57C /* LikedPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF33E2A3A36F200CBC57C /* LikedPhotosViewController.swift */; };
-		FFEDF3422A3A3C7500CBC57C /* LikedPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3412A3A3C7500CBC57C /* LikedPhotosTableViewCell.swift */; };
+		FFEDF3422A3A3C7500CBC57C /* LikedPhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3412A3A3C7500CBC57C /* LikedPhotosCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		FFEDF3382A3A1C2B00CBC57C /* UnsplashPhotoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhotoEntity.swift; sourceTree = "<group>"; };
 		FFEDF33B2A3A350500CBC57C /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
 		FFEDF33E2A3A36F200CBC57C /* LikedPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotosViewController.swift; sourceTree = "<group>"; };
-		FFEDF3412A3A3C7500CBC57C /* LikedPhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotosTableViewCell.swift; sourceTree = "<group>"; };
+		FFEDF3412A3A3C7500CBC57C /* LikedPhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotosCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +221,7 @@
 		FFEDF3402A3A3C5300CBC57C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FFEDF3412A3A3C7500CBC57C /* LikedPhotosTableViewCell.swift */,
+				FFEDF3412A3A3C7500CBC57C /* LikedPhotosCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 				FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */,
 				FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */,
 				FFEDF3392A3A1C2B00CBC57C /* UnsplashPhotoEntity.swift in Sources */,
-				FFEDF3422A3A3C7500CBC57C /* LikedPhotosTableViewCell.swift in Sources */,
+				FFEDF3422A3A3C7500CBC57C /* LikedPhotosCell.swift in Sources */,
 				FFEDF3262A391FA000CBC57C /* Resources.swift in Sources */,
 				FFEDF3212A3917E400CBC57C /* UnsplashPhoto.swift in Sources */,
 				FFEDF32B2A392BBB00CBC57C /* PhotosCell.swift in Sources */,

@@ -22,9 +22,11 @@ class AppBuilder {
     }
     
     private func createPhotosFlow() -> UIViewController{
-        let networkService = NetworkService()
+        
         let photosVC = PhotosViewController()
-        photosVC.networkService = networkService
+
+        photosVC.networkService = NetworkService()
+        photosVC.dataManager = CoreDataManager()
         
         let navigationController = UINavigationController(rootViewController: photosVC)
         
@@ -36,9 +38,8 @@ class AppBuilder {
     
     private func createLikedPhotosFlow() -> UIViewController {
         
-        let coreDataManager = CoreDataManager()
         let likedPhotosVC = LikedPhotosViewController()
-        likedPhotosVC.dataManager = coreDataManager
+        likedPhotosVC.dataManager = CoreDataManager()
         
         let navigationController = UINavigationController(rootViewController: likedPhotosVC)
         

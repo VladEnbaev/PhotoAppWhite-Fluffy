@@ -44,11 +44,21 @@ class DetailPhotoViewController: UIViewController {
 extension DetailPhotoViewController {
     
     @objc func likeButtonTapped() {
-        guard let photo = photo else {
-            showAlert(error: "Please, wait a second")
-            return
+        photo?.likedByUser.toggle()
+        checkLikeStatus()
+    }
+    
+    func checkLikeStatus() {
+        guard let photo = photo else { return }
+        if photo.likedByUser {
+            dataManager?.createPhoto(from: photo)
+            likeButton.setImage(R.Icons.likeFilled,
+                                for: .normal)
+        } else {
+            dataManager?.deletePhoto(with: photo.id)
+            likeButton.setImage(R.Icons.like,
+                                for: .normal)
         }
-        dataManager?.createPhoto(from: photo)
     }
     
     func showAlert(error: String) {
@@ -82,15 +92,18 @@ extension DetailPhotoViewController: BaseViewProtocol {
     }
     
     private func setupLikeButton() {
-        likeButton.setImage(R.Icons.like.withTintColor(.systemGray, renderingMode: .alwaysTemplate),
-                            for: .normal)
-        likeButton.setImage(R.Icons.likeFilled.withTintColor(.systemRed, renderingMode: .alwaysTemplate),
-                            for: .selected)
+        if photo?.likedByUser ?? false {
+            likeButton.setImage(R.Icons.likeFilled,
+                                for: .normal)
+        } else {
+            likeButton.setImage(R.Icons.like,
+                                for: .normal)
+        }
+        
         likeButton.tintColor = .systemRed
         
         likeButton.contentVerticalAlignment = .fill
         likeButton.contentHorizontalAlignment = .fill
-//        likeButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -196,27 +209,3 @@ extension DetailPhotoViewController: BaseViewProtocol {
         ])
     }
 }
-
-
-//    func createCustomTitle(with image: UIImage, highlightedImage: UIImage?, title: String) -> UIView {
-//
-//        let backgroundView = UIView()
-//        let imageView = UIImageView(image: image, highlightedImage: highlightedImage)
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        let title = UILabel()
-//        title.font = UIFont.systemFont(ofSize: 15)
-//        title.textColor = .black
-//        title.translatesAutoresizingMaskIntoConstraints = false
-//
-//        backgroundView.addSubview(imageView)
-//        backgroundView.addSubview(title)
-//
-//        NSLayoutConstraint.activate([
-//            imageView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-//            imageView.topAnchor.constraint(
-//        ])
-//
-//        return backgroundView
-//    }
-    

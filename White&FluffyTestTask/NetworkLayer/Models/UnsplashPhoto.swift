@@ -17,7 +17,7 @@ struct UnsplashPhoto: Codable {
     let createdAt: String?
     let width, height: Int
     let downloads: Int?
-    let likedByUser: Bool
+    var likedByUser: Bool
     let description: String?
     
     let location: Location?
