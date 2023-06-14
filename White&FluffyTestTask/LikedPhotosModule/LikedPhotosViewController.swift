@@ -42,6 +42,12 @@ extension LikedPhotosViewController {
     @objc func refreshButtonTapped() {
         loadPhotos()
     }
+    private func delete(photo: UnsplashPhoto?) {
+        guard let photo = photo else { return }
+        
+        dataManager?.deletePhoto(with: photo.id)
+        loadPhotos()
+    }
     
     @objc func deleteButtonTapped() {
         dataManager?.deleteAllPhotos()
@@ -125,5 +131,11 @@ extension LikedPhotosViewController : UITableViewDelegate {
         detailPhotoVC.configure(with: photo, dataManager: dataManager)
         
         navigationController?.pushViewController(detailPhotoVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            delete(photo: photos?[indexPath.row])
+        }
     }
 }

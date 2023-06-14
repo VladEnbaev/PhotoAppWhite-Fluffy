@@ -43,7 +43,13 @@ class NetworkService {
     
     private func getURLSession<T: Decodable>(with urlRequest: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void){
         let task = URLSession.shared.dataTask(with: urlRequest) { (data,response,error) in
-            guard let data = data else { return }
+            guard let data = data else {
+                let response = response as? HTTPURLResponse
+                let error = NSError(domain: "", code: response?.statusCode ?? 0)
+                completionHandler(.failure(error))
+                return
+            }
+            
             if let error = error{
                 completionHandler(.failure(error))
             } else {
@@ -51,7 +57,6 @@ class NetworkService {
                     let recievedData = try JSONDecoder().decode(T.self, from: data)
                     completionHandler(.success(recievedData))
                 } catch {
-                    debugPrint(error)
                     completionHandler(.failure(error))
                 }
             }
