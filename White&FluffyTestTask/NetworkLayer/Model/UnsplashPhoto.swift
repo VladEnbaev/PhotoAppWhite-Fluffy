@@ -7,14 +7,25 @@
 
 import Foundation
 
+struct SearchResults: Decodable {
+    let total: Int
+    let results: [UnsplashPhoto]
+}
+
 struct UnsplashPhoto: Codable {
     let id: String
     let createdAt : String?
     let width, height: Int
-    let downloads: Int
+    let downloads: Int?
     let description: String?
     
+    let urls : Urls
     let user : UnsplashUser
+}
+
+struct Urls : Codable{
+    let raw, full, regular, small: String
+    let thumb: String
 }
 
 struct Location: Codable {

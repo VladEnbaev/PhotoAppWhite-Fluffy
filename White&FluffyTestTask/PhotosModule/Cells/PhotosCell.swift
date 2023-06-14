@@ -12,34 +12,11 @@ import UIKit
 
 class PhotosCell: UICollectionViewCell {
     
+    
     static let reuseId = "PhotosCell"
+    let indicator = UIActivityIndicatorView(style: .medium)
     
-    private let checkmark: UIImageView = {
-        let image = UIImage(named: "bird1")
-        let imageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.alpha = 0
-        return imageView
-    }()
-    
-     let photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-//    var unsplashPhoto: UnsplashPhoto! {
-//        didSet {
-//            let photoUrl = unsplashPhoto.urls["regular"]
-//            guard let imageUrl = photoUrl, let url = URL(string: imageUrl) else { return }
-//            //photoImageView.sd_setImage(with: url, completed: nil)
-//            
-//            
-//        }
-//    }
-    
+    var photoImageView = UIImageView()
     
     override var isSelected: Bool {
         didSet {
@@ -47,7 +24,27 @@ class PhotosCell: UICollectionViewCell {
         }
     }
     
-   
+    func setup(with imageURL: URL) {
+        indicator.startAnimating()
+        self.photoImageView.sd_setImage(with: imageURL) {_,_,_,_ in
+            DispatchQueue.main.async{
+                self.indicator.stopAnimating()
+            }
+        }
+        
+        updateSelectedState()
+        setupViews()
+        constraintViews()
+    }
+    
+    func startAnimation(_ bool: Bool) {
+        
+        if bool {
+            indicator.startAnimating()
+        } else {
+            indicator.stopAnimating()
+        }
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -56,34 +53,49 @@ class PhotosCell: UICollectionViewCell {
     
     private func updateSelectedState() {
         photoImageView.alpha = isSelected ? 0.7 : 1
-        checkmark.alpha = isSelected ? 1 : 0
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        updateSelectedState()
+}
+
+extension PhotosCell: BaseViewProtocol {
+    
+    func setupViews() {
+        contentView.layer.cornerRadius = 20
+        contentView.layer.cornerCurve = .circular
         setupPhotoImageView()
-        setupCheckmarkView()
+        setupIndicator()
     }
     
-    private func setupPhotoImageView() {
-        addSubview(photoImageView)
-        photoImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+    func setupPhotoImageView() {
+        
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView.backgroundColor = .white
+        photoImageView.contentMode = .scaleToFill
+    }
+    
+    func setupIndicator() {
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+       
         
     }
     
-    private func setupCheckmarkView() {
-        addSubview(checkmark)
-        checkmark.trailingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: -8).isActive = true
-        checkmark.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: -8).isActive = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func constraintViews() {
+        contentView.addSubview(photoImageView)
+        contentView.addSubview(indicator)
+        
+        
+        NSLayoutConstraint.activate([
+            photoImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            
+            indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            indicator.heightAnchor.constraint(equalToConstant: 20),
+            indicator.widthAnchor.constraint(equalToConstant: 20),
+        ])
     }
     
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotosViewController: UIViewController{
     
@@ -16,13 +17,16 @@ class PhotosViewController: UIViewController{
     var photos: [UnsplashPhoto]? = nil
     
     private let itemsPerRow: CGFloat = 2
-    private let sectionInserts = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    private let inset : CGFloat = 8
+    private let sectionInserts = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         constraintViews()
+        
+        getRandomImages(count: 30)
     }
     
 }
@@ -32,22 +36,21 @@ extension PhotosViewController: BaseViewProtocol {
         setupPhotosCollectionView()
         setupSearchBar()
         setupPhotosCollectionView()
+        setupNavigationBar()
     }
     
     func setupPhotosCollectionView() {
         let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .horizontal
+        collectionViewLayout.scrollDirection = .vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(PhotosCell.self, forCellWithReuseIdentifier: PhotosCell.reuseId)
         
-        collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.contentInsetAdjustmentBehavior = .automatic
-        collectionView.allowsMultipleSelection = true
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -91,10 +94,8 @@ extension PhotosViewController {
         networkService?.getImages(query: query) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let photos):
-                    self.photos = photos
-                    print(photos[1])
-                    print(photos.count)
+                case .success(let photosResult):
+                    self.photos = photosResult.results
                     self.collectionView.reloadData()
                 case .failure(let error):
                     self.showAlert(error: error)
@@ -133,7 +134,7 @@ extension PhotosViewController : UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        getRandomImages(count: 10)
+        getImages(for: query)
     }
     
 }
@@ -146,7 +147,10 @@ extension PhotosViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCell.reuseId, for: indexPath) as! PhotosCell
-        let unspashPhoto = photos?[indexPath.item]
+        guard let unspashPhotoUrlString = photos?[indexPath.item].urls.regular,
+                let url = URL(string: unspashPhotoUrlString) else { return UICollectionViewCell() }
+       
+        cell.setup(with: url)
         return cell
     }
 }
@@ -166,19 +170,18 @@ extension PhotosViewController : UICollectionViewDelegate {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let photo = photos?[indexPath.item]
-        let paddingSpace = sectionInserts.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
+        let paddingSpace = inset * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem : CGFloat = availableWidth / itemsPerRow - 1
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInserts
+        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInserts.left
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInserts.left
+//    }
 }

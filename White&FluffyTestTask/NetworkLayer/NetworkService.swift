@@ -36,19 +36,19 @@ fileprivate enum UnsplashResources {
 
 protocol NetworkServiceProtocol {
     func getRandomImages(count: Int, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)
-    func getImages(query: String, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)
+    func getImages(query: String, completion: @escaping (Result<SearchResults, Error>) -> Void)
 }
 
 class NetworkService {
     
-    private func getURLSession<T: Decodable>(with urlRequest: URLRequest, completionHandler: @escaping (Result<[T], Error>) -> Void){
+    private func getURLSession<T: Decodable>(with urlRequest: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void){
         let task = URLSession.shared.dataTask(with: urlRequest) { (data,response,error) in
             guard let data = data else { return }
             if let error = error{
                 completionHandler(.failure(error))
             } else {
                 do{
-                    let recievedData = try JSONDecoder().decode([T].self, from: data)
+                    let recievedData = try JSONDecoder().decode(T.self, from: data)
                     completionHandler(.success(recievedData))
                 } catch {
                     debugPrint(error)
@@ -77,7 +77,7 @@ extension NetworkService: NetworkServiceProtocol {
        
     }
     
-    func getImages(query: String, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)  {
+    func getImages(query: String, completion: @escaping (Result<SearchResults, Error>) -> Void)  {
         let parameters = [
             UnsplashResources.Parameters.query : query,
             UnsplashResources.Parameters.page : "\(1)",

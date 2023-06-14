@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6751A33CA5B8978C3A99364F /* Pods_White_FluffyTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4499B6B900D0D8F560BCF59 /* Pods_White_FluffyTestTask.framework */; };
 		FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C61E2A39014200DE474F /* AppDelegate.swift */; };
 		FF18C6212A39014200DE474F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6202A39014200DE474F /* SceneDelegate.swift */; };
 		FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6222A39014200DE474F /* PhotosViewController.swift */; };
@@ -22,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10929B8EA2B289F19263011D /* Pods-White&FluffyTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White&FluffyTestTask.release.xcconfig"; path = "Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask.release.xcconfig"; sourceTree = "<group>"; };
+		636327CFD9F7B0974E922031 /* Pods-White&FluffyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White&FluffyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
+		E4499B6B900D0D8F560BCF59 /* Pods_White_FluffyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_White_FluffyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF18C61B2A39014200DE474F /* White&FluffyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&FluffyTestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF18C61E2A39014200DE474F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF18C6202A39014200DE474F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,17 +47,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6751A33CA5B8978C3A99364F /* Pods_White_FluffyTestTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D4A0E98F5E7490AF96D1D6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				636327CFD9F7B0974E922031 /* Pods-White&FluffyTestTask.debug.xcconfig */,
+				10929B8EA2B289F19263011D /* Pods-White&FluffyTestTask.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F0E7216A99800C5AB7AEF00F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4499B6B900D0D8F560BCF59 /* Pods_White_FluffyTestTask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FF18C6122A39014200DE474F = {
 			isa = PBXGroup;
 			children = (
 				FF18C61D2A39014200DE474F /* White&FluffyTestTask */,
 				FF18C61C2A39014200DE474F /* Products */,
+				7D4A0E98F5E7490AF96D1D6D /* Pods */,
+				F0E7216A99800C5AB7AEF00F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,9 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF18C62F2A39014300DE474F /* Build configuration list for PBXNativeTarget "White&FluffyTestTask" */;
 			buildPhases = (
+				832739DC5E83715A7409368E /* [CP] Check Pods Manifest.lock */,
 				FF18C6172A39014200DE474F /* Sources */,
 				FF18C6182A39014200DE474F /* Frameworks */,
 				FF18C6192A39014200DE474F /* Resources */,
+				FD9A57EBA3DE8E2C3DB9F62D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +224,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		832739DC5E83715A7409368E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-White&FluffyTestTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD9A57EBA3DE8E2C3DB9F62D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF18C6172A39014200DE474F /* Sources */ = {
@@ -346,6 +415,7 @@
 		};
 		FF18C6302A39014300DE474F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 636327CFD9F7B0974E922031 /* Pods-White&FluffyTestTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -374,6 +444,7 @@
 		};
 		FF18C6312A39014300DE474F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10929B8EA2B289F19263011D /* Pods-White&FluffyTestTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
