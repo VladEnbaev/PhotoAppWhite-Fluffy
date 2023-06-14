@@ -4,6 +4,7 @@
         <attribute name="createdAt" optional="YES" attributeType="String"/>
         <attribute name="downloads" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="likedByUser" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
         <attribute name="textDescription" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>

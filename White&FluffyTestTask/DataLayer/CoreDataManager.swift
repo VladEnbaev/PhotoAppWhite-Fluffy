@@ -12,15 +12,13 @@ protocol DataManagerProtocol {
     func createPhoto(from model: UnsplashPhoto)
     func fetchPhotos() -> [UnsplashPhotoEntity]
     func fetchPhoto(with id: String) -> UnsplashPhotoEntity?
-    func deleteAllPhoto()
+    func deleteAllPhotos()
     func deletePhoto(with id: String)
 }
 
 // MARK: - CRUD
 class CoreDataManager : DataManagerProtocol{
     
-    public static let shared = CoreDataManager()
-
     private var appDelegate: AppDelegate {
         UIApplication.shared.delegate as! AppDelegate
     }
@@ -67,7 +65,7 @@ class CoreDataManager : DataManagerProtocol{
         }
     }
 
-    public func deleteAllPhoto() {
+    public func deleteAllPhotos() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UnsplashPhotoEntity")
         do {
             let photos = try? context.fetch(fetchRequest) as? [UnsplashPhotoEntity]

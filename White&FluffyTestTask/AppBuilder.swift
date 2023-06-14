@@ -35,10 +35,12 @@ class AppBuilder {
     }
     
     private func createLikedPhotosFlow() -> UIViewController {
-        let mocVC = UIViewController()
-        mocVC.view.backgroundColor = .blue
         
-        let navigationController = UINavigationController(rootViewController: mocVC)
+        let coreDataManager = CoreDataManager()
+        let likedPhotosVC = LikedPhotosViewController()
+        likedPhotosVC.dataManager = coreDataManager
+        
+        let navigationController = UINavigationController(rootViewController: likedPhotosVC)
         
         navigationController.tabBarItem.title = "Favorites"
         navigationController.tabBarItem.image = R.Icons.tabBarFavorites

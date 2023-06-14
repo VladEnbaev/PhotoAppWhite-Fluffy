@@ -9,6 +9,7 @@ import Foundation
 
 
 struct UnsplashUser: Codable {
-    let id: String
-    let username, name: String
+    let id: String?
+    let username : String
+    let name: String?
 }

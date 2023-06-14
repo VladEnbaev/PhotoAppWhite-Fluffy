@@ -16,8 +16,7 @@ struct UnsplashPhoto: Codable {
     let id: String
     let createdAt: String?
     let width, height: Int
-    let color: String
-    let downloads: Int
+    let downloads: Int?
     let likedByUser: Bool
     let description: String?
     
@@ -28,14 +27,14 @@ struct UnsplashPhoto: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case createdAt = "created_at"
-        case width, height, color, downloads
+        case width, height, downloads
         case likedByUser = "liked_by_user"
         case description, location, urls, user
     }
     
     struct Urls : Codable {
-        let raw, full, regular, small: String
-        let thumb: String
+        let raw, full, thumb, small: String?
+        let regular: String
     }
 
     struct Location: Codable {
