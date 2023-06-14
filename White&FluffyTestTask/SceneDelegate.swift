@@ -18,12 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
        
-        let networkService = NetworkService()
-        let photosViewController = PhotosViewController()
-        photosViewController.networkService = networkService
+        let appBuilder = AppBuilder()
+        let tabbar = appBuilder.createTabBar()
         
-        let navController = UINavigationController(rootViewController: photosViewController)
-        window?.rootViewController = navController
+        window?.rootViewController = tabbar
         window?.makeKeyAndVisible()
     }
 }
