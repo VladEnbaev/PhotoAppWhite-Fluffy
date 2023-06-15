@@ -172,7 +172,9 @@ extension PhotosViewController : UISearchBarDelegate {
         guard let query = searchBar.text else { return }
         getImages(for: query)
     }
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        getRandomImages(count: 30)
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -205,6 +207,7 @@ extension PhotosViewController : UICollectionViewDelegate {
         } else {
             detailVC.configure(with: photo, dataManager: dataManager)
         }
+        print(photo)
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
