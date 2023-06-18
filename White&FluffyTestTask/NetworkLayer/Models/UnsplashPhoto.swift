@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResults: Decodable {
+struct UnsplashSearchResults: Decodable {
     let total: Int
     let results: [UnsplashPhoto]
 }

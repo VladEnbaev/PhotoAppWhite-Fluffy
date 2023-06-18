@@ -10,13 +10,11 @@ import SDWebImage
 
 class PhotosViewController: UIViewController{
     
-    var networkService : NetworkServiceProtocol? = nil
-    var dataManager : DataManagerProtocol? = nil
-    
     var collectionView : UICollectionView!
     var statusLabel = UILabel()
+    let refreshControl = UIRefreshControl()
     
-    var photos: [UnsplashPhoto]? = nil
+    var viewModel: PhotosViewModelProtocol!
     
     private let itemsPerRow: CGFloat = 2
     private let inset : CGFloat = 8
@@ -28,63 +26,57 @@ class PhotosViewController: UIViewController{
         setupViews()
         constraintViews()
         
-        getRandomImages(count: 30)
+        bindViewModel()
+        getRandomImages()
     }
-    
 }
 //MARK: - Actions
 extension PhotosViewController {
-    private func getImages(for query: String) {
-        statusLabel(isHidden: false)
-        networkService?.getImages(query: query) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let photosResult):
-                    self.statusLabel(isHidden: true)
-                    self.photos = photosResult.results
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    self.statusLabel(isHidden: true)
-                    self.showAlert(error: error)
-                }
-            }
-        }
-    }
-    
-    private func getRandomImages(count: Int) {
-        statusLabel(isHidden: false)
-        networkService?.getRandomImages(count: count) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let photos):
-                    self.statusLabel(isHidden: true)
-                    self.photos = photos
-                    self.collectionView.reloadData()
-                case .failure(let error):
-                    self.statusLabel(isHidden: true)
-                    self.showAlert(error: error)
-                }
-            }
-        }
-    }
-    
-    private func showAlert(error: Error) {
+    private func showAlert(errorText: String) {
         let alert = UIAlertController(title: "ops",
-                                      message: error.localizedDescription,
+                                      message: errorText,
                                       preferredStyle: .alert)
         let okButton = UIAlertAction(title: "ok", style: .default)
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
     
-    private func statusLabel(isHidden: Bool){
-        statusLabel.isHidden = isHidden
-        collectionView.isHidden = !isHidden
+    private func showStatusLabel(_ bool: Bool){
+        statusLabel.isHidden = !bool
+        collectionView.isHidden = bool
     }
     
     @objc func refreshButtonTapped() {
-        getRandomImages(count: 30)
+        getRandomImages()
     }
+}
+
+//MARK: - ViewModelMethods
+extension PhotosViewController {
+    func bindViewModel() {
+        viewModel.isLoading.bind() { [weak self] isLoading in
+            guard let isLoading = isLoading else { return }
+            self?.showStatusLabel(isLoading)
+        }
+        
+        viewModel.errorText?.bind() { [weak self] recivedText in
+            guard let text = recivedText else { return }
+            self?.showAlert(errorText: text)
+        }
+    }
+    
+    private func getImages(for query: String) {
+        viewModel.getRandomImages { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    private func getRandomImages() {
+        viewModel.getRandomImages { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
 }
 
 //MARK: - Setup Views
@@ -128,6 +120,12 @@ extension PhotosViewController: BaseViewProtocol {
         navigationItem.rightBarButtonItem = refreshButton
     }
     
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        
+        collectionView.addSubview(refreshControl)
+    }
+    
     private func setupSearchBar() {
         let seacrhController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = seacrhController
@@ -162,7 +160,6 @@ extension PhotosViewController: BaseViewProtocol {
         ])
     
     }
-    
 }
 
 //MARK: - UISearchBarDelegate
@@ -173,23 +170,21 @@ extension PhotosViewController : UISearchBarDelegate {
         getImages(for: query)
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        getRandomImages(count: 30)
+        getRandomImages()
     }
+    
 }
 
 //MARK: - UICollectionViewDataSource
 extension PhotosViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos?.count ?? 0
+        return viewModel.numberOfRows()
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCell.reuseId, for: indexPath) as! PhotosCell
-        guard let unspashPhotoUrlString = photos?[indexPath.item].urls.regular,
-                let url = URL(string: unspashPhotoUrlString) else { return UICollectionViewCell() }
-       
-        cell.setup(with: url)
+        cell.setup(with: viewModel.getURLForRow(at: indexPath))
         return cell
     }
 }
@@ -197,19 +192,19 @@ extension PhotosViewController : UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let photo = photos?[indexPath.row],
-              let dataManager = dataManager else { return }
-        
-        let detailVC = DetailPhotoViewController()
-        
-        if let entity = dataManager.fetchPhoto(with: photo.id) {
-            detailVC.configure(with: entity.createModel(), dataManager: dataManager)
-        } else {
-            detailVC.configure(with: photo, dataManager: dataManager)
-        }
-        print(photo)
-        
-        navigationController?.pushViewController(detailVC, animated: true)
+//        guard let photo = photos?[indexPath.row],
+//              let dataManager = dataManager else { return }
+//
+//        let detailVC = DetailPhotoViewController()
+//
+//        if let entity = dataManager.fetchPhoto(with: photo.id) {
+//            detailVC.configure(with: entity.createModel(), dataManager: dataManager)
+//        } else {
+//            detailVC.configure(with: photo, dataManager: dataManager)
+//        }
+//        print(photo)
+//
+//        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -241,5 +236,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
-    
 }

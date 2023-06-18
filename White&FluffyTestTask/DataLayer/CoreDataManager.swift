@@ -1,10 +1,3 @@
-//
-//  CoreDataMamanager.swift
-//  CoreDataDemo
-//
-//  Created by Viktor Prikolota on 13.03.2023.
-//
-
 import UIKit
 import CoreData
 

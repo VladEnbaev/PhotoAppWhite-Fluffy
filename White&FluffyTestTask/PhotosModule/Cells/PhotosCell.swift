@@ -18,7 +18,7 @@ class PhotosCell: UICollectionViewCell {
     
     var photoImageView = UIImageView()
     
-    func setup(with imageURL: URL) {
+    func setup(with imageURL: URL?) {
         
         indicator.startAnimating()
         self.photoImageView.sd_setImage(with: imageURL) {_,_,_,_ in

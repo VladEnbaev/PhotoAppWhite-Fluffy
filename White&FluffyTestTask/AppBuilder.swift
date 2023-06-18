@@ -23,10 +23,10 @@ class AppBuilder {
     
     private func createPhotosFlow() -> UIViewController{
         
+        let photosViewModel = PhotosViewModel(networkService: NetworkService(), dataManager:  CoreDataManager())
+        
         let photosVC = PhotosViewController()
-
-        photosVC.networkService = NetworkService()
-        photosVC.dataManager = CoreDataManager()
+        photosVC.viewModel = photosViewModel
         
         let navigationController = UINavigationController(rootViewController: photosVC)
         

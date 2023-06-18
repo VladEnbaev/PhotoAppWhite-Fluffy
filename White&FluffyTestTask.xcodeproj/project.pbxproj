@@ -13,6 +13,8 @@
 		FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF18C6222A39014200DE474F /* PhotosViewController.swift */; };
 		FF18C6282A39014300DE474F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6272A39014300DE474F /* Assets.xcassets */; };
 		FF18C62B2A39014300DE474F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6292A39014300DE474F /* LaunchScreen.storyboard */; };
+		FF9171D62A3F7F700022A2FC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9171D52A3F7F700022A2FC /* Observable.swift */; };
+		FF9235E32A3F3ED600F47F1F /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9235E22A3F3ED600F47F1F /* PhotosViewModel.swift */; };
 		FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */; };
 		FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31D2A390BC400CBC57C /* NetworkService.swift */; };
 		FFEDF3212A3917E400CBC57C /* UnsplashPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF3202A3917E400CBC57C /* UnsplashPhoto.swift */; };
@@ -40,6 +42,8 @@
 		FF18C6272A39014300DE474F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF18C62A2A39014300DE474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF18C62C2A39014300DE474F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF9171D52A3F7F700022A2FC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		FF9235E22A3F3ED600F47F1F /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		FFEDF31D2A390BC400CBC57C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FFEDF3202A3917E400CBC57C /* UnsplashPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhoto.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			children = (
 				FFEDF3292A392B9D00CBC57C /* Cells */,
 				FF18C6222A39014200DE474F /* PhotosViewController.swift */,
+				FF9235E22A3F3ED600F47F1F /* PhotosViewModel.swift */,
 			);
 			path = PhotosModule;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				FFEDF33A2A3A34F000CBC57C /* Extensions */,
 				FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */,
 				FFEDF3252A391FA000CBC57C /* Resources.swift */,
+				FF9171D52A3F7F700022A2FC /* Observable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF9171D62A3F7F700022A2FC /* Observable.swift in Sources */,
 				FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */,
 				FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */,
 				FFEDF3322A3A0C8800CBC57C /* CoreDataManager.swift in Sources */,
@@ -349,6 +356,7 @@
 				FFEDF3352A3A1A2E00CBC57C /* UnsplashModels.xcdatamodeld in Sources */,
 				FFEDF3302A39CB9600CBC57C /* DetailPhotoViewController.swift in Sources */,
 				FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */,
+				FF9235E32A3F3ED600F47F1F /* PhotosViewModel.swift in Sources */,
 				FF18C61F2A39014200DE474F /* AppDelegate.swift in Sources */,
 				FFEDF3392A3A1C2B00CBC57C /* UnsplashPhotoEntity.swift in Sources */,
 				FFEDF3422A3A3C7500CBC57C /* LikedPhotosCell.swift in Sources */,

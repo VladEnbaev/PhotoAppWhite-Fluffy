@@ -36,7 +36,7 @@ fileprivate enum UnsplashResources {
 
 protocol NetworkServiceProtocol {
     func getRandomImages(count: Int, completion: @escaping (Result<[UnsplashPhoto], Error>) -> Void)
-    func getImages(query: String, completion: @escaping (Result<SearchResults, Error>) -> Void)
+    func getImages(query: String, completion: @escaping (Result<UnsplashSearchResults, Error>) -> Void)
 }
 
 class NetworkService {
@@ -82,7 +82,7 @@ extension NetworkService: NetworkServiceProtocol {
        
     }
     
-    func getImages(query: String, completion: @escaping (Result<SearchResults, Error>) -> Void)  {
+    func getImages(query: String, completion: @escaping (Result<UnsplashSearchResults, Error>) -> Void)  {
         let parameters = [
             UnsplashResources.Parameters.query : query,
             UnsplashResources.Parameters.page : "\(1)",
