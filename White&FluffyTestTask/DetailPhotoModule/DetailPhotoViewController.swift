@@ -10,9 +10,7 @@ import SDWebImage
 
 class DetailPhotoViewController: UIViewController {
     
-    var dataManager: DataManagerProtocol? = nil
-    
-    private var photo : UnsplashPhoto? = nil
+    var viewModel : DetailPhotoViewModelProtocol!
     
     private let likeButton = UIButton()
     private let photoImageView = UIImageView()
@@ -29,15 +27,11 @@ class DetailPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        constraintViews()
-    }
-    
-    func configure(with photo: UnsplashPhoto, dataManager: DataManagerProtocol) {
-        loadViewIfNeeded()
-        self.dataManager = dataManager
-        self.photo = photo
-        
+        viewModel.viewModelDidChange = { [weak self] viewModel in
+            self?.setStatusForFavoriteButton()
+        }
         setupViews()
+        constraintViews()
     }
 }
 
@@ -45,24 +39,10 @@ class DetailPhotoViewController: UIViewController {
 extension DetailPhotoViewController {
     
     @objc func likeButtonTapped() {
-        photo?.likedByUser.toggle()
-        checkLikeStatus()
+        viewModel.likeButtonTapped()
     }
     
-    func checkLikeStatus() {
-        guard let photo = photo else { return }
-        if photo.likedByUser {
-            dataManager?.createPhoto(from: photo)
-            likeButton.setImage(R.Icons.likeFilled,
-                                for: .normal)
-        } else {
-            dataManager?.deletePhoto(with: photo.id)
-            likeButton.setImage(R.Icons.like,
-                                for: .normal)
-        }
-    }
-    
-    func showAlert(error: String) {
+    private func showAlert(error: String) {
         let alert = UIAlertController(title: "ops",
                                       message: error,
                                       preferredStyle: .alert)
@@ -71,6 +51,15 @@ extension DetailPhotoViewController {
         self.present(alert, animated: true)
     }
     
+    private func setStatusForFavoriteButton() {
+        if viewModel.isLiked {
+            likeButton.setImage(R.Icons.likeFilled,
+                                for: .normal)
+        } else {
+            likeButton.setImage(R.Icons.like,
+                                for: .normal)
+        }
+    }
 }
 
 //MARK: - Setup Views
@@ -94,13 +83,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
     }
     
     private func setupLikeButton() {
-        if photo?.likedByUser ?? false {
-            likeButton.setImage(R.Icons.likeFilled,
-                                for: .normal)
-        } else {
-            likeButton.setImage(R.Icons.like,
-                                for: .normal)
-        }
+        setStatusForFavoriteButton()
         
         likeButton.tintColor = .systemRed
         
@@ -118,9 +101,8 @@ extension DetailPhotoViewController: BaseViewProtocol {
         photoImageView.backgroundColor = .lightGray
         photoImageView.contentMode = .scaleAspectFill
         
-        guard let url = URL(string: photo?.urls.regular ?? "") else { return }
         indicator.startAnimating()
-        self.photoImageView.sd_setImage(with: url) {_,_,_,_ in
+        self.photoImageView.sd_setImage(with: viewModel.imageURL) {_,_,_,_ in
             DispatchQueue.main.async{
                 self.indicator.stopAnimating()
             }
@@ -132,15 +114,15 @@ extension DetailPhotoViewController: BaseViewProtocol {
     private func setupInfoButtons() {
         createInfoButton(button: usernameButton,
                          image: R.Icons.person,
-                         text: photo?.user.username ?? "-")
+                         text: viewModel.usersName)
         
         createInfoButton(button: downloadsButton,
                          image: R.Icons.downloads,
-                         text: "\(photo?.downloads ?? 0)")
+                         text: viewModel.downloads)
         
         createInfoButton(button: geoButton,
                          image: R.Icons.geo,
-                         text: photo?.location?.name ?? "-")
+                         text: viewModel.geolocation)
     }
     
     private func createInfoButton(button: UIButton, image: UIImage, text: String?){
@@ -158,7 +140,7 @@ extension DetailPhotoViewController: BaseViewProtocol {
     }
     
     private func setupDateLabel() {
-        dateLabel.text = photo?.createdAt ?? "00-00-0000"
+        dateLabel.text = viewModel.createdAt
         dateLabel.textColor = .systemGray
         dateLabel.font = UIFont.systemFont(ofSize: 12)
         

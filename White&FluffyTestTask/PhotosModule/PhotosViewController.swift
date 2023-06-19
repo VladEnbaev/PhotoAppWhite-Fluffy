@@ -66,7 +66,7 @@ extension PhotosViewController {
     }
     
     private func getImages(for query: String) {
-        viewModel.getRandomImages { [weak self] in
+        viewModel.getImages(for: query) { [weak self] in
             self?.collectionView.reloadData()
         }
     }
@@ -192,19 +192,11 @@ extension PhotosViewController : UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension PhotosViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let photo = photos?[indexPath.row],
-//              let dataManager = dataManager else { return }
-//
-//        let detailVC = DetailPhotoViewController()
-//
-//        if let entity = dataManager.fetchPhoto(with: photo.id) {
-//            detailVC.configure(with: entity.createModel(), dataManager: dataManager)
-//        } else {
-//            detailVC.configure(with: photo, dataManager: dataManager)
-//        }
-//        print(photo)
-//
-//        navigationController?.pushViewController(detailVC, animated: true)
+
+        let detailVC = DetailPhotoViewController()
+        detailVC.viewModel = viewModel.viewModelForSelectedRow(at: indexPath)
+
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

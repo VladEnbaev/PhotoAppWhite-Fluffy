@@ -23,7 +23,7 @@ struct UnsplashPhoto: Codable {
     let location: Location?
     let urls: Urls
     let user: UnsplashUser
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case createdAt = "created_at"
@@ -45,5 +45,17 @@ struct UnsplashPhoto: Codable {
     struct Position : Codable {
         let latitude, longitude: Double?
     }
+}
 
+
+extension UnsplashPhoto {
+    var dateOfCreation: Date? {
+        guard let createdAt = self.createdAt else {
+            return nil
+        }
+        let dateFormatter = ISO8601DateFormatter()
+        let date = dateFormatter.date(from: createdAt)!
+        
+        return date
+    }
 }

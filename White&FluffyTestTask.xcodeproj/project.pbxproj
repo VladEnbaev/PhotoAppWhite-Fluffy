@@ -14,6 +14,7 @@
 		FF18C6282A39014300DE474F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6272A39014300DE474F /* Assets.xcassets */; };
 		FF18C62B2A39014300DE474F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF18C6292A39014300DE474F /* LaunchScreen.storyboard */; };
 		FF9171D62A3F7F700022A2FC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9171D52A3F7F700022A2FC /* Observable.swift */; };
+		FF9171DA2A3FA0EA0022A2FC /* DetailPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9171D92A3FA0EA0022A2FC /* DetailPhotoViewModel.swift */; };
 		FF9235E32A3F3ED600F47F1F /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9235E22A3F3ED600F47F1F /* PhotosViewModel.swift */; };
 		FFEDF31C2A3904D100CBC57C /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */; };
 		FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEDF31D2A390BC400CBC57C /* NetworkService.swift */; };
@@ -43,6 +44,7 @@
 		FF18C62A2A39014300DE474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF18C62C2A39014300DE474F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF9171D52A3F7F700022A2FC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		FF9171D92A3FA0EA0022A2FC /* DetailPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewModel.swift; sourceTree = "<group>"; };
 		FF9235E22A3F3ED600F47F1F /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
 		FFEDF31B2A3904D100CBC57C /* BaseViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		FFEDF31D2A390BC400CBC57C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				FFEDF32F2A39CB9600CBC57C /* DetailPhotoViewController.swift */,
+				FF9171D92A3FA0EA0022A2FC /* DetailPhotoViewModel.swift */,
 			);
 			path = DetailPhotoModule;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			files = (
 				FF9171D62A3F7F700022A2FC /* Observable.swift in Sources */,
 				FFEDF31E2A390BC400CBC57C /* NetworkService.swift in Sources */,
+				FF9171DA2A3FA0EA0022A2FC /* DetailPhotoViewModel.swift in Sources */,
 				FF18C6232A39014200DE474F /* PhotosViewController.swift in Sources */,
 				FFEDF3322A3A0C8800CBC57C /* CoreDataManager.swift in Sources */,
 				FFEDF33C2A3A350500CBC57C /* UIColor + ext.swift in Sources */,

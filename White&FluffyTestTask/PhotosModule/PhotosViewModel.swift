@@ -10,11 +10,14 @@ import Foundation
 protocol PhotosViewModelProtocol {
     var isLoading: Observable<Bool> { get set }
     var errorText: Observable<String>? { get set }
+    
     init(networkService: NetworkServiceProtocol, dataManager: DataManagerProtocol)
+    
     func getImages(for query: String,completion: @escaping () -> Void)
     func getRandomImages(completion: @escaping () -> Void)
     func numberOfRows() -> Int
     func getURLForRow(at indexPath: IndexPath) -> URL?
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> DetailPhotoViewModelProtocol
 }
 
 class PhotosViewModel: PhotosViewModelProtocol {
@@ -74,5 +77,19 @@ extension PhotosViewModel {
     func getURLForRow(at indexPath: IndexPath) -> URL? {
         let url = URL(string: photos[indexPath.row].urls.thumb ?? "")
         return url
+    }
+    
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> DetailPhotoViewModelProtocol {
+        
+        var photo : UnsplashPhoto!
+        
+        if let entity = dataManager.fetchPhoto(with: photos[indexPath.row].id) {
+            photo = entity.createModel()
+        } else {
+            photo = photos[indexPath.row]
+        }
+        print(photo)
+        
+        return DetailPhotoViewModel(photo: photo, dataManager: dataManager)
     }
 }
