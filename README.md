@@ -1,4 +1,4 @@
-# WhiteAndFluffyTestTask
+# PhotoAppWhite-Fluffy
 ### Используемые технологии:
 * URLSession, JSONDecoder
 * CoreData
