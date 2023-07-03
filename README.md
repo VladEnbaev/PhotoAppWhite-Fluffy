@@ -1,4 +1,4 @@
-# PhotoAppWhite-Fluffy
+# UnsplashPhotoApp
 ### Используемые технологии:
 * URLSession, JSONDecoder
 * CoreData
