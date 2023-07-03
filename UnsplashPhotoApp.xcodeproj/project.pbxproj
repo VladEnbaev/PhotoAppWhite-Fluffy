@@ -36,7 +36,7 @@
 		10929B8EA2B289F19263011D /* Pods-White&FluffyTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White&FluffyTestTask.release.xcconfig"; path = "Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask.release.xcconfig"; sourceTree = "<group>"; };
 		636327CFD9F7B0974E922031 /* Pods-White&FluffyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-White&FluffyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-White&FluffyTestTask/Pods-White&FluffyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		E4499B6B900D0D8F560BCF59 /* Pods_White_FluffyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_White_FluffyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF18C61B2A39014200DE474F /* White&FluffyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&FluffyTestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF18C61B2A39014200DE474F /* UnsplashPhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashPhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF18C61E2A39014200DE474F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF18C6202A39014200DE474F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FF18C6222A39014200DE474F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		FF18C6122A39014200DE474F = {
 			isa = PBXGroup;
 			children = (
-				FF18C61D2A39014200DE474F /* White&FluffyTestTask */,
+				FF18C61D2A39014200DE474F /* UnsplashPhotoApp */,
 				FF18C61C2A39014200DE474F /* Products */,
 				7D4A0E98F5E7490AF96D1D6D /* Pods */,
 				F0E7216A99800C5AB7AEF00F /* Frameworks */,
@@ -104,12 +104,12 @@
 		FF18C61C2A39014200DE474F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF18C61B2A39014200DE474F /* White&FluffyTestTask.app */,
+				FF18C61B2A39014200DE474F /* UnsplashPhotoApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FF18C61D2A39014200DE474F /* White&FluffyTestTask */ = {
+		FF18C61D2A39014200DE474F /* UnsplashPhotoApp */ = {
 			isa = PBXGroup;
 			children = (
 				FF18C61E2A39014200DE474F /* AppDelegate.swift */,
@@ -123,7 +123,7 @@
 				FFEDF3242A391F4700CBC57C /* Helpers */,
 				FFEDF31A2A3902E500CBC57C /* SupportingFiles */,
 			);
-			path = "White&FluffyTestTask";
+			path = UnsplashPhotoApp;
 			sourceTree = "<group>";
 		};
 		FFEDF3182A39027400CBC57C /* PhotosModule */ = {
@@ -238,9 +238,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF18C61A2A39014200DE474F /* White&FluffyTestTask */ = {
+		FF18C61A2A39014200DE474F /* UnsplashPhotoApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF18C62F2A39014300DE474F /* Build configuration list for PBXNativeTarget "White&FluffyTestTask" */;
+			buildConfigurationList = FF18C62F2A39014300DE474F /* Build configuration list for PBXNativeTarget "UnsplashPhotoApp" */;
 			buildPhases = (
 				832739DC5E83715A7409368E /* [CP] Check Pods Manifest.lock */,
 				FF18C6172A39014200DE474F /* Sources */,
@@ -252,9 +252,9 @@
 			);
 			dependencies = (
 			);
-			name = "White&FluffyTestTask";
+			name = UnsplashPhotoApp;
 			productName = "White&FluffyTestTask";
-			productReference = FF18C61B2A39014200DE474F /* White&FluffyTestTask.app */;
+			productReference = FF18C61B2A39014200DE474F /* UnsplashPhotoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -272,7 +272,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FF18C6162A39014200DE474F /* Build configuration list for PBXProject "White&FluffyTestTask" */;
+			buildConfigurationList = FF18C6162A39014200DE474F /* Build configuration list for PBXProject "UnsplashPhotoApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -285,7 +285,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF18C61A2A39014200DE474F /* White&FluffyTestTask */,
+				FF18C61A2A39014200DE474F /* UnsplashPhotoApp */,
 			);
 		};
 /* End PBXProject section */
@@ -510,7 +510,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T574RGJCUB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "White&FluffyTestTask/SupportingFiles/Info.plist";
+				INFOPLIST_FILE = UnsplashPhotoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -539,7 +539,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T574RGJCUB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "White&FluffyTestTask/SupportingFiles/Info.plist";
+				INFOPLIST_FILE = UnsplashPhotoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -561,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF18C6162A39014200DE474F /* Build configuration list for PBXProject "White&FluffyTestTask" */ = {
+		FF18C6162A39014200DE474F /* Build configuration list for PBXProject "UnsplashPhotoApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF18C62D2A39014300DE474F /* Debug */,
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF18C62F2A39014300DE474F /* Build configuration list for PBXNativeTarget "White&FluffyTestTask" */ = {
+		FF18C62F2A39014300DE474F /* Build configuration list for PBXNativeTarget "UnsplashPhotoApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF18C6302A39014300DE474F /* Debug */,

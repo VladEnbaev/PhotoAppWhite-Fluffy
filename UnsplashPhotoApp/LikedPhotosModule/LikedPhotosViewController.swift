@@ -124,13 +124,15 @@ extension LikedPhotosViewController : UITableViewDataSource{
 //MARK: - UITableViewDelegate
 extension LikedPhotosViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let photo = photos?[indexPath.row],
-//              let dataManager = dataManager else { return }
-//
-//        let detailPhotoVC = DetailPhotoViewController()
-//
-//        
-//        navigationController?.pushViewController(detailPhotoVC, animated: true)
+        guard let photo = photos?[indexPath.row],
+              let dataManager = dataManager else { return }
+
+        let detailPhotoVC = DetailPhotoViewController()
+        let detailVM = DetailPhotoViewModel(photo: photo, dataManager: dataManager)
+        
+        detailPhotoVC.viewModel = detailVM
+        
+        navigationController?.pushViewController(detailPhotoVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
